@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
 })
 
 // DELETE - delete a bulletin
-router.post('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     res.json({mssg: 'DELETE a bulletin'})
 })
 

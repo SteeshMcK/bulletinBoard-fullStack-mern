@@ -2,6 +2,7 @@ require('dotenv').config()
 
 // file requirements
 const express = require('express')
+const mongoose = require('mongoose')
 const bulletinRoutes = require('./routes/bulletins')
 
 // express app
@@ -18,7 +19,16 @@ app.use((req, res, next) => {
 // routes - pulls routes in from route file
 app.use('/api/bulletins', bulletinRoutes)
 
-// listen for requests
-app.listen(process.env.PORT, () => {
-    console.log('listening on port', process.env.PORT)
+// connect to database
+mongoose.connect(process.env.MONGO_URI)
+ .then(() => {
+    // start listening for requests after connection to database
+    app.listen(process.env.PORT, () => {
+        console.log('connected to db and listening on port', process.env.PORT)
 })
+ })
+ .catch((error) => {
+    console.log(error)
+ })
+
+
