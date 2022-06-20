@@ -1,6 +1,8 @@
 require('dotenv').config()
 
+// file requirements
 const express = require('express')
+const bulletinRoutes = require('./routes/bulletins')
 
 // express app
 const app = express()
@@ -11,10 +13,8 @@ app.use((req, res, next) => {
     next()
 })
 
-// route handler (react to requests)
-app.get('/', (req, res) => {
-    res.json({mssg: 'Welcome to the app'})
-})
+// routes - pulls routes in from route file
+app.use('/api/bulletins', bulletinRoutes)
 
 // listen for requests
 app.listen(process.env.PORT, () => {
