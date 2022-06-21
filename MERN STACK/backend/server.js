@@ -1,3 +1,4 @@
+// require 'dotenv' to use Node Environment Variables
 require('dotenv').config()
 
 // file requirements
